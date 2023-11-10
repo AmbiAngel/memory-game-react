@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 function DataFetcher() {
-  let searchTerm = "cat";
+//   API info
+  let searchTerm = "guitar";
   let apiKey = "kSAC6exmgG7ErgOZgDrLuwtdH0vUW3Bj";
   let limit = "12";
   const url = `https://api.giphy.com/v1/stickers/search?api_key=${apiKey}&q=${searchTerm}&limit=${limit}&offset=0&rating=g&lang=en&bundle=messaging_non_clips`;
