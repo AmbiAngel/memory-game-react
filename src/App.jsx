@@ -7,6 +7,7 @@ import DataFetcher from "./components/DataFetcher";
 function App() {
   const [data, setData] = useState(null);
   const [gameCount, setGameCount] = useState(0);
+  const [gameState, setGameState] = useState(false)
 
   console.log("data");
   console.log(data);
@@ -53,7 +54,7 @@ function App() {
     );
   }
 
-
+// Put fetch data in useEffect so it renders once, on mount
   useEffect(() => {
     //   API info
     let searchTerm = "guitar";
@@ -74,10 +75,18 @@ function App() {
     fetchData();
   }, []);
 
+
+  function toggleGameState(){
+    gameState ? setGameState(false) : setGameState(true)
+  }
+
   return (
     <>
       <h1>hi</h1>
-      {data && renderImgsRandomly()}
+      <label htmlFor="theme-input">Theme:</label>
+      <input id="theme-input"></input>
+      <button onClick={toggleGameState}>{gameState ? "End Game" : "Start Game"}</button>
+      {(gameState && data) && renderImgsRandomly()}
     </>
 
     // fetch  random imgs from [gify] API into array
@@ -92,6 +101,11 @@ function App() {
     //     *previous "Render Img in random order" function will at score +1 or at game reset because useEffect (sexy)
     //      *Score needs be in same component as useEffect random Render and game logic
     //
+
+    /* 
+    useEffect sets state var, shuffledArray, on compononet [mount, score change, new game]
+    compononet is game area
+    */
   );
 }
 export default App;
