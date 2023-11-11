@@ -5,6 +5,11 @@ export default function TheGame({ theme, limit }) {
   const [shuffledArr, setShuffledArr] = useState([]);
   const [score, setScore] = useState(0)
   const [clickedSources, setClickedSources] = useState([])
+  const [highScore, setHighScore] = useState(0)
+
+  if(score > highScore){
+    setHighScore(score)
+  }
 
   // Fetch data in useEffect so it renders once, on mount
   useEffect(() => {
@@ -28,7 +33,7 @@ export default function TheGame({ theme, limit }) {
     fetchData();
   }, []);
 
-//   Shuffle Imgs array on mount... TODO: and on score change
+//   Shuffle Imgs array on mount and on score change
   useEffect(() => {
     function shuffleImgArr() {
       const shuffledArray = [...data.data];
@@ -59,7 +64,7 @@ export default function TheGame({ theme, limit }) {
         setClickedSources([])
     }
     else{
-        setScore(score+1)
+        setScore(()=>score+1)
         setClickedSources([...clickedSources, e.target.src])
     }
 
@@ -67,7 +72,8 @@ export default function TheGame({ theme, limit }) {
 
   return (
     <div className="game-container">
-        <p>{score}</p>
+        <p>Score: {score}</p>
+        <p>High Score: {highScore}</p>
         <div className="img-grid">
           {shuffledArr.map((item, index) => (
             <>
