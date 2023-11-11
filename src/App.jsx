@@ -11,6 +11,7 @@ function App() {
   const [gameState, setGameState] = useState(false)
   const [themeInput, setThemeInput] = useState('cat')
   const [numOfImgs, setNumOfImgs] = useState(12)
+  const [highScore, setHighScore] = useState(0);
 
 
   function toggleGameState(){
@@ -24,7 +25,8 @@ function App() {
       <input id="theme-input" value={themeInput} onChange={(e)=>{setThemeInput(e.target.value)}} disabled={gameState}></input>
       <input id="numOfImgs-input" value={numOfImgs} onChange={(e)=>{setNumOfImgs(e.target.value)}} disabled={gameState}></input>
       <button onClick={toggleGameState}>{gameState ? "End Game" : "Start Game"}</button>
-      {(gameState) && <TheGame theme={themeInput} limit={numOfImgs}></TheGame>}
+      <p>High Score: {highScore}</p>
+      {(gameState) && <TheGame theme={themeInput} limit={numOfImgs} setHighScore={setHighScore} highScore={highScore}></TheGame>}
     </>
   );
 }

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 
-export default function TheGame({ theme, limit }) {
+export default function TheGame({ theme, limit, highScore, setHighScore }) {
   const [data, setData] = useState({});
   const [shuffledArr, setShuffledArr] = useState([]);
   const [score, setScore] = useState(0);
   const [clickedSources, setClickedSources] = useState([]);
-  const [highScore, setHighScore] = useState(0);
+
 
   if (score > highScore) {
     setHighScore(score);
@@ -70,7 +70,6 @@ export default function TheGame({ theme, limit }) {
   return (
     <div className="game-container">
       <p>Score: {score}</p>
-      <p>High Score: {highScore}</p>
       <div className="img-grid">
         {shuffledArr.map((item, index) => (
           <>
