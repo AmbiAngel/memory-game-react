@@ -49,7 +49,7 @@ export default function TheGame({ theme, limit }) {
     } catch {
       setShuffledArr([]);
     }
-  }, [data]);
+  }, [data,score]);
 
 
   function handleClick(e){
