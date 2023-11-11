@@ -19,7 +19,7 @@ function App() {
 
   return (
     <>
-      <h1>hi</h1>
+      <h1>Memory Game</h1>
       <label htmlFor="theme-input">Theme:</label>
       <input id="theme-input" value={themeInput} onChange={(e)=>{setThemeInput(e.target.value)}} disabled={gameState}></input>
       <input id="numOfImgs-input" value={numOfImgs} onChange={(e)=>{setNumOfImgs(e.target.value)}} disabled={gameState}></input>
