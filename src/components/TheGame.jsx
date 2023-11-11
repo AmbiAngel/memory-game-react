@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 export default function TheGame({ theme, limit }) {
   const [data, setData] = useState({});
   const [shuffledArr, setShuffledArr] = useState([]);
+  const [score, setScore] = useState(0)
+  const [clickedSources, setClickedSources] = useState([])
 
   // Fetch data in useEffect so it renders once, on mount
   useEffect(() => {
@@ -49,13 +51,28 @@ export default function TheGame({ theme, limit }) {
     }
   }, [data]);
 
+
+  function handleClick(e){
+    if(clickedSources.includes(e.target.src)){
+        console.log('game over')
+    }
+    else{
+        setScore(score+1)
+        setClickedSources([...clickedSources, e.target.src])
+    }
+
+  }
+
   return (
-    <div className="img-grid">
-      {shuffledArr.map((item, index) => (
-        <>
-          <img src={item.images.fixed_width.url}></img>
-        </>
-      ))}
+    <div className="game-container">
+        <p>{score}</p>
+        <div className="img-grid">
+          {shuffledArr.map((item, index) => (
+            <>
+              <img src={item.images.fixed_width.url} onClick={handleClick}></img>
+            </>
+          ))}
+        </div>
     </div>
   );
 }
