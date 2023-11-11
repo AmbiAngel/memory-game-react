@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 export default function TheGame({ theme, limit }) {
   const [data, setData] = useState({});
   const [shuffledArr, setShuffledArr] = useState([]);
-  const [score, setScore] = useState(0)
-  const [clickedSources, setClickedSources] = useState([])
-  const [highScore, setHighScore] = useState(0)
+  const [score, setScore] = useState(0);
+  const [clickedSources, setClickedSources] = useState([]);
+  const [highScore, setHighScore] = useState(0);
 
-  if(score > highScore){
-    setHighScore(score)
+  if (score > highScore) {
+    setHighScore(score);
   }
 
   // Fetch data in useEffect so it renders once, on mount
@@ -33,7 +33,7 @@ export default function TheGame({ theme, limit }) {
     fetchData();
   }, []);
 
-//   Shuffle Imgs array on mount and on score change
+  //   Shuffle Imgs array on mount and on score change
   useEffect(() => {
     function shuffleImgArr() {
       const shuffledArray = [...data.data];
@@ -54,33 +54,35 @@ export default function TheGame({ theme, limit }) {
     } catch {
       setShuffledArr([]);
     }
-  }, [data,score]);
+  }, [data, score]);
 
-
-  function handleClick(e){
-    if(clickedSources.includes(e.target.src)){
-        console.log('game over')
-        setScore(0)
-        setClickedSources([])
+  function handleClick(e) {
+    if (clickedSources.includes(e.target.src)) {
+      console.log("game over");
+      setScore(0);
+      setClickedSources([]);
+    } else {
+      setScore(() => score + 1);
+      setClickedSources([...clickedSources, e.target.src]);
     }
-    else{
-        setScore(()=>score+1)
-        setClickedSources([...clickedSources, e.target.src])
-    }
-
   }
 
   return (
     <div className="game-container">
-        <p>Score: {score}</p>
-        <p>High Score: {highScore}</p>
-        <div className="img-grid">
-          {shuffledArr.map((item, index) => (
-            <>
-              <img src={item.images.fixed_width.url} onClick={handleClick}></img>
-            </>
-          ))}
-        </div>
+      <p>Score: {score}</p>
+      <p>High Score: {highScore}</p>
+      <div className="img-grid">
+        {shuffledArr.map((item, index) => (
+          <>
+            <div className="card">
+              <img
+                src={item.images.fixed_width.url}
+                onClick={handleClick}
+              ></img>
+            </div>
+          </>
+        ))}
+      </div>
     </div>
   );
 }
