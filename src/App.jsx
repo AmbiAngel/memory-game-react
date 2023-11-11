@@ -3,77 +3,18 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import DataFetcher from "./components/DataFetcher";
+import TheGame from "./components/TheGame";
 
 function App() {
-  const [data, setData] = useState(null);
+
   const [gameCount, setGameCount] = useState(0);
   const [gameState, setGameState] = useState(false)
 
-  console.log("data");
-  console.log(data);
 
-  function shuffleImgArr() {
-    const shuffledArray = [...data.data];
 
-    for (let i = shuffledArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledArray[i], shuffledArray[j]] = [
-        shuffledArray[j],
-        shuffledArray[i],
-      ];
-    }
 
-    console.log("shuffle:");
-    console.log(shuffledArray);
 
-    return shuffledArray;
 
-    // return (
-    //   <div>
-    //     {shuffledArray.data.map((item, index) => (
-    //       <>
-    //         <img src={item.images.original.url}></img>
-    //       </>
-    //     ))}
-    //   </div>
-    // );
-  }
-
-  function renderImgsRandomly() {
-
-    const shuffle = shuffleImgArr();
-
-    return (
-      <div>
-        {shuffle.map((item, index) => (
-          <>
-            <img src={item.images.original.url}></img>
-          </>
-        ))}
-      </div>
-    );
-  }
-
-// Put fetch data in useEffect so it renders once, on mount
-  useEffect(() => {
-    //   API info
-    let searchTerm = "guitar";
-    let apiKey = "kSAC6exmgG7ErgOZgDrLuwtdH0vUW3Bj";
-    let limit = "12";
-    const url = `https://api.giphy.com/v1/stickers/search?api_key=${apiKey}&q=${searchTerm}&limit=${limit}&offset=0&rating=g&lang=en&bundle=messaging_non_clips`;
-    async function fetchData() {
-      try {
-        const data = await fetch(url, { mode: "cors" });
-        const parsedData = await data.json();
-
-        setData(parsedData);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    fetchData();
-  }, []);
 
 
   function toggleGameState(){
@@ -86,7 +27,7 @@ function App() {
       <label htmlFor="theme-input">Theme:</label>
       <input id="theme-input"></input>
       <button onClick={toggleGameState}>{gameState ? "End Game" : "Start Game"}</button>
-      {(gameState && data) && renderImgsRandomly()}
+      {(gameState) && <TheGame></TheGame>}
     </>
 
     // fetch  random imgs from [gify] API into array
