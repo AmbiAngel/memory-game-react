@@ -4,10 +4,10 @@ export default function TheGame({ theme, limit }) {
   const [data, setData] = useState({});
   const [shuffledArr, setShuffledArr] = useState([]);
 
-  // Put fetch data in useEffect so it renders once, on mount
+  // Fetch data in useEffect so it renders once, on mount
   useEffect(() => {
     //   API info
-    let searchTerm = "guitar";
+    let searchTerm = "cat";
     let apiKey = "kSAC6exmgG7ErgOZgDrLuwtdH0vUW3Bj";
     let limit = "12";
     const url = `https://api.giphy.com/v1/stickers/search?api_key=${apiKey}&q=${searchTerm}&limit=${limit}&offset=0&rating=g&lang=en&bundle=messaging_non_clips`;
@@ -26,6 +26,7 @@ export default function TheGame({ theme, limit }) {
     fetchData();
   }, []);
 
+//   Shuffle Imgs array on mount... TODO: and on score change
   useEffect(() => {
     function shuffleImgArr() {
       const shuffledArray = [...data.data];
@@ -49,10 +50,10 @@ export default function TheGame({ theme, limit }) {
   }, [data]);
 
   return (
-    <div>
+    <div className="img-grid">
       {shuffledArr.map((item, index) => (
         <>
-          <img src={item.images.original.url}></img>
+          <img src={item.images.fixed_width.url}></img>
         </>
       ))}
     </div>
