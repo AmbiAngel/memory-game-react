@@ -21,8 +21,8 @@ function App() {
     <>
       <h1>hi</h1>
       <label htmlFor="theme-input">Theme:</label>
-      <input id="theme-input" value={themeInput} onChange={(e)=>{setThemeInput(e.target.value)}}></input>
-      <input id="numOfImgs-input" value={numOfImgs} onChange={(e)=>{setNumOfImgs(e.target.value)}}></input>
+      <input id="theme-input" value={themeInput} onChange={(e)=>{setThemeInput(e.target.value)}} disabled={gameState}></input>
+      <input id="numOfImgs-input" value={numOfImgs} onChange={(e)=>{setNumOfImgs(e.target.value)}} disabled={gameState}></input>
       <button onClick={toggleGameState}>{gameState ? "End Game" : "Start Game"}</button>
       {(gameState) && <TheGame theme={themeInput} limit={numOfImgs}></TheGame>}
     </>
