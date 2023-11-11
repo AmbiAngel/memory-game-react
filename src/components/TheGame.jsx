@@ -14,7 +14,7 @@ export default function TheGame({ theme, limit }) {
   // Fetch data in useEffect so it renders once, on mount
   useEffect(() => {
     //   API info
-    let searchTerm = "cat";
+    let searchTerm = theme;
     let apiKey = "kSAC6exmgG7ErgOZgDrLuwtdH0vUW3Bj";
     let limit = "12";
     const url = `https://api.giphy.com/v1/stickers/search?api_key=${apiKey}&q=${searchTerm}&limit=${limit}&offset=0&rating=g&lang=en&bundle=messaging_non_clips`;

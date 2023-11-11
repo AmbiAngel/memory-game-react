@@ -9,6 +9,7 @@ function App() {
 
   const [gameCount, setGameCount] = useState(0);
   const [gameState, setGameState] = useState(false)
+  const [themeInput, setThemeInput] = useState('')
 
 
   function toggleGameState(){
@@ -19,9 +20,9 @@ function App() {
     <>
       <h1>hi</h1>
       <label htmlFor="theme-input">Theme:</label>
-      <input id="theme-input"></input>
+      <input id="theme-input" value={themeInput} onChange={(e)=>{setThemeInput(e.target.value)}}></input>
       <button onClick={toggleGameState}>{gameState ? "End Game" : "Start Game"}</button>
-      {(gameState) && <TheGame></TheGame>}
+      {(gameState) && <TheGame theme={themeInput}></TheGame>}
     </>
   );
 }
