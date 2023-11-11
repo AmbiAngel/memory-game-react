@@ -55,6 +55,8 @@ export default function TheGame({ theme, limit }) {
   function handleClick(e){
     if(clickedSources.includes(e.target.src)){
         console.log('game over')
+        setScore(0)
+        setClickedSources([])
     }
     else{
         setScore(score+1)
