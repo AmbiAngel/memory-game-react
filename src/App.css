@@ -73,8 +73,8 @@ body{
   margin: 0 20%;
 }
 
-.inputs-container > label, .inputs-container > input, .inputs-container > button {
-  font-size: 1.5rem;
+.inputs-container > label, .inputs-container > input, .inputs-container > button , .score, .high-score{
+  font-size: 1.2rem;
   border-radius: 20px;
   margin: 5px auto;
   border: none;

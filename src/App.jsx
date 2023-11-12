@@ -29,7 +29,7 @@ function App() {
         <input id="numOfImgs-input" value={numOfImgs} onChange={(e)=>{setNumOfImgs(e.target.value)}} disabled={gameState}></input>
         <button onClick={toggleGameState}>{gameState ? "End Game" : "Start Game"}</button>
       </form>
-      <p>High Score: {highScore}</p>
+      <p className="high-score">High Score: {highScore}</p>
       {(gameState) && <TheGame theme={themeInput} limit={numOfImgs} setHighScore={setHighScore} highScore={highScore}></TheGame>}
     </>
   );

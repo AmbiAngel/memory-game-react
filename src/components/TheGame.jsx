@@ -69,7 +69,7 @@ export default function TheGame({ theme, limit, highScore, setHighScore }) {
 
   return (
     <div className="game-container">
-      <p>Score: {score} / {limit}</p>
+      <p className="score">Score: {score} / {limit}</p>
       <div className="img-grid">
         {shuffledArr.map((item, index) => (
           <>
