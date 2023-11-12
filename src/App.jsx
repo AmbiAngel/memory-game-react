@@ -14,17 +14,21 @@ function App() {
   const [highScore, setHighScore] = useState(0);
 
 
-  function toggleGameState(){
+  function toggleGameState(e){
+    event.preventDefault();
     gameState ? setGameState(false) : setGameState(true)
   }
 
   return (
     <>
       <h1>Memory Game</h1>
-      <label htmlFor="theme-input">Theme:</label>
-      <input id="theme-input" value={themeInput} onChange={(e)=>{setThemeInput(e.target.value)}} disabled={gameState}></input>
-      <input id="numOfImgs-input" value={numOfImgs} onChange={(e)=>{setNumOfImgs(e.target.value)}} disabled={gameState}></input>
-      <button onClick={toggleGameState}>{gameState ? "End Game" : "Start Game"}</button>
+      <form action="" className="inputs-container">
+        <label htmlFor="theme-input">Theme:</label>
+        <input id="theme-input" value={themeInput} onChange={(e)=>{setThemeInput(e.target.value)}} disabled={gameState}></input>
+        <label htmlFor="numOfImgs-input">Number of Images:</label>
+        <input id="numOfImgs-input" value={numOfImgs} onChange={(e)=>{setNumOfImgs(e.target.value)}} disabled={gameState}></input>
+        <button onClick={toggleGameState}>{gameState ? "End Game" : "Start Game"}</button>
+      </form>
       <p>High Score: {highScore}</p>
       {(gameState) && <TheGame theme={themeInput} limit={numOfImgs} setHighScore={setHighScore} highScore={highScore}></TheGame>}
     </>
