@@ -85,11 +85,14 @@ body{
 .inputs-container > button {
   grid-column: span 2;
   border: none
-
 }
 
-.inputs-container > button:hover{
+.start-game-btn:hover{
   background-color: rgb(56, 119, 212);
+}
+
+.end-game-btn:hover{
+  background-color: rgb(212, 56, 56);
 }
 .card{
   width: 100%;

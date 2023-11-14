@@ -27,7 +27,7 @@ function App() {
         <input id="theme-input" value={themeInput} onChange={(e)=>{setThemeInput(e.target.value)}} disabled={gameState}></input>
         <label htmlFor="numOfImgs-input">Number of Images:</label>
         <input id="numOfImgs-input" value={numOfImgs} onChange={(e)=>{setNumOfImgs(e.target.value)}} disabled={gameState}></input>
-        <button onClick={toggleGameState}>{gameState ? "End Game" : "Start Game"}</button>
+        <button className={gameState ? "end-game-btn" : "start-game-btn"} onClick={toggleGameState}>{gameState ? "End Game" : "Start Game"}</button>
       </form>
       <p className="high-score">High Score: {highScore}</p>
       {(gameState) && <TheGame theme={themeInput} limit={numOfImgs} setHighScore={setHighScore} highScore={highScore}></TheGame>}
